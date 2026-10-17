@@ -52,7 +52,9 @@ export default function Bowling() {
       rb.setRotation({ x: 0, y: 0, z: 0, w: 1 }, true)
       rb.setLinvel({ x: 0, y: 0, z: 0 }, true)
       rb.setAngvel({ x: 0, y: 0, z: 0 }, true)
-      rb.sleep()
+      // Ojo: no dormir el cuerpo aquí. react-three-rapier no actualiza la malla de los cuerpos
+      // dormidos, así que el bolo se recolocaba en la física pero se seguía viendo tirado (o
+      // fuera de la pista): parecía que desaparecían o que eran invisibles. Se duermen solos al asentarse.
     })
     const rb = ball.current
     if (rb) {
@@ -151,6 +153,7 @@ export default function Bowling() {
           colliders={false}
           linearDamping={0.3}
           angularDamping={0.4}
+          ccd
           onCollisionEnter={() => {
             const v = pins.current[i]?.linvel()
             if (v) sfx.pin(Math.hypot(v.x, v.y, v.z) * 1.5)
@@ -309,7 +312,12 @@ function LaneMesh() {
           <boxGeometry args={[half * 2 + 1, 1.6, 0.2]} />
           <meshStandardMaterial color="#1c1826" />
         </mesh>
-        <CuboidCollider args={[half + 0.5, 0.8, 0.1]} position={[X, 0.8, BACK_Z - 0.1]} />
+        <CuboidCollider args={[half + 0.5, 1.2, 0.5]} position={[X, 1.2, BACK_Z - 0.5]} />
+        {/* Paredes laterales del foso y techo bajo la cortina: los bolos no pueden salir volando */}
+        {[-1, 1].map((s) => (
+          <CuboidCollider key={s} args={[0.2, 1.2, 2.6]} position={[X + s * (half + 0.62), 1.2, BACK_Z + 2.2]} />
+        ))}
+        <CuboidCollider args={[half + 0.6, 0.2, 2.6]} position={[X, 2.6, BACK_Z + 2.2]} />
         <mesh position={[X, 1.25, BACK_Z + 0.4]}>
           <boxGeometry args={[half * 2 + 1, 0.3, 0.9]} />
           <meshStandardMaterial color="#2f2a3d" />

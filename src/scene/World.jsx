@@ -11,6 +11,8 @@ import { Label, Board, Interactable } from './common'
 import { BOUNDS, PLAZA, LINKS_AT, PROJECTS_AT, PITCH_CX, LANE, isFree, mulberry32 } from './layout'
 import Decor from './Decor'
 import Hologram from './Hologram'
+import Halloween from './Halloween'
+import { HALLOWEEN } from '../season'
 import ProjectBoard from './ProjectBoard'
 import Football from './games/Football'
 import Bowling from './games/Bowling'
@@ -29,6 +31,7 @@ export default function World() {
       <Bowling />
       <Decor />
       <Hologram />
+      {HALLOWEEN && <Halloween />}
       <Crates />
       <Lamps />
       <Trees />

@@ -29,6 +29,7 @@ Despliegue: se compila con `base: '/3d/'` y se publica dentro del portfolio (rep
 | Decoración del mundo (fuente, hoguera, estanque…) | `src/scene/Decor.jsx` |
 | Decoración de la habitación (gato, reloj, PC…) | `src/scene/RoomDecor.jsx` |
 | Minijuegos | `src/scene/games/Football.jsx`, `src/scene/games/Bowling.jsx` |
+| Decoración de Halloween (calabazas, cementerio, fantasmas, murciélagos, guirnaldas) · se activa sola en octubre | `src/scene/Halloween.jsx`, `src/season.js` |
 | Holograma de Taskorit sobre la fuente (vídeo en `public/videos/`) | `src/scene/Hologram.jsx` |
 | Sonidos (generados con Web Audio, sin archivos) | `src/audio/sfx.js` |
 | Movimiento del avatar | `src/scene/Player.jsx` |
@@ -50,7 +51,8 @@ WASD / flechas para moverte · Shift para correr · Espacio para saltar · E par
 
 - **Calidad gráfica** automática (baja sola si van mal los FPS) o manual en Ajustes (⚙). En calidad baja se quitan sombras, luces puntuales, hierba y partículas.
 - **Móvil**: joystick (arrastrar en la mitad izquierda) y botones *Saltar* / *Acción* (mantener para cargar el chut).
-- **Minimapa** abajo a la derecha: clic en un punto para viajar. En móvil en horizontal empieza cerrado y se cierra al viajar.
+- **Minimapa** abajo a la derecha: bosque, caminos y zonas con iconos, brújula, radar, cono de visión y nombre del sitio donde estás. Viaje rápido haciendo clic en el mapa o en los botones de iconos. En móvil en horizontal empieza cerrado y se cierra al viajar.
+- **Halloween** 🎃: del 1 de octubre al 7 de noviembre el mundo se decora solo (calabazas encendidas, cementerio con niebla, fantasmas, murciélagos y guirnaldas en la plaza). Se puede forzar con `?halloween` o quitar con `?nohalloween`.
 - **Holograma de Taskorit** flotando sobre la fuente de la plaza: reproduce el anuncio de la app (solo cuando estás cerca) y con E abre la demo.
 - **Intro** de cámara al entrar (cualquier tecla o toque la salta).
 - **Logros** (🏆 arriba a la derecha), guardados en el navegador.

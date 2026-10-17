@@ -329,16 +329,41 @@ kbd {
   position: absolute;
   right: 18px;
   bottom: 20px;
-  padding: 8px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: var(--panel);
+  padding: 10px;
+  border: 1px solid rgba(139, 139, 255, 0.35);
+  border-radius: 18px;
+  background: linear-gradient(160deg, rgba(36, 30, 56, 0.92), rgba(18, 15, 28, 0.94));
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
   pointer-events: auto;
+  animation: prompt-in 0.25s ease-out;
 }
-.minimap canvas { display: block; border-radius: 8px; background: rgba(0, 0, 0, 0.25); cursor: pointer; }
-.minimap__toggle {
+.minimap--halloween {
+  border-color: rgba(255, 138, 31, 0.5);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(255, 138, 31, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.minimap__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.minimap--closed .minimap__head { margin: 0; }
+.minimap__where {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+  font: 600 11.5px/1 'Inter', system-ui, sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.minimap__dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; flex: none; }
+.minimap canvas {
   display: block;
-  margin: 0 0 6px auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+.minimap__toggle {
+  flex: none;
+  margin-left: auto;
   border: 0;
   background: none;
   color: var(--muted);
@@ -347,8 +372,23 @@ kbd {
   text-transform: uppercase;
   cursor: pointer;
 }
-.minimap--closed .minimap__toggle { margin: 0; }
-.minimap__label { margin: 6px 0 0; color: var(--muted); font-size: 11px; text-align: center; max-width: 168px; }
+.minimap__toggle:hover { color: var(--text); }
+.minimap__places { display: grid; grid-template-columns: repeat(auto-fill, minmax(30px, 1fr)); gap: 4px; margin-top: 8px; }
+.minimap__place {
+  height: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s, border-color 0.15s;
+}
+.minimap__place:hover,
+.minimap__place.is-hover { transform: translateY(-2px); background: rgba(139, 139, 255, 0.18); border-color: rgba(139, 139, 255, 0.5); }
+.minimap--halloween .minimap__place:hover,
+.minimap--halloween .minimap__place.is-hover { background: rgba(255, 138, 31, 0.18); border-color: rgba(255, 138, 31, 0.55); }
+.minimap__label { margin: 6px 0 0; color: var(--muted); font-size: 11px; text-align: center; }
 .fade { position: fixed; inset: 0; z-index: 20; background: var(--bg); animation: fade 0.62s ease-in-out forwards; pointer-events: none; }
 @keyframes fade { 0% { opacity: 0; } 45%, 55% { opacity: 1; } 100% { opacity: 0; } }
 

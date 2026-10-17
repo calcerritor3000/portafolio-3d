@@ -42,6 +42,7 @@ const circles = [
   [PLAZA[0], PLAZA[1], 5.8],
   [CAMPFIRE[0], CAMPFIRE[1], 3.4],
   [POND[0], POND[1], 4.6],
+  [-20, -7, 5.2], // claro del cementerio (Halloween)
 ]
 
 export function isFree(x, z, pad = 0) {
