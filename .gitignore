@@ -1,0 +1,10 @@
+node_modules
+dist
+.vercel
+
+# Entorno
+.env
+.env.*
+
+# Configuración local de Claude
+.claude/
