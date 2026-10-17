@@ -80,8 +80,8 @@ export const projects = [
   },
 ]
 
-// PENDIENTE: modelo .glb de tu avatar (low-poly, comprimido con Draco). Mientras sea null se usa el avatar provisional.
-// Los colores del avatar provisional se pueden ajustar a tu aspecto (pelo, piel, ropa).
+// Avatar: si algún día tienes un modelo .glb propio (low-poly, comprimido con Draco), pon su ruta en modelUrl.
+// Mientras sea null se usa el avatar de bloques, con estos colores (pelo, piel, ropa).
 export const avatar = {
   modelUrl: null,
   colors: {

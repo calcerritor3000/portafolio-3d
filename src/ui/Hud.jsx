@@ -3,6 +3,8 @@ import { useGame, IS_TOUCH, ACHIEVEMENTS } from '../state/store'
 import { profile, links } from '../content'
 import { sfx } from '../audio/sfx'
 import Minimap from './Minimap'
+import { HALLOWEEN } from '../season'
+import { PUMPKIN_TOTAL } from '../scene/PumpkinHunt'
 import TouchControls from './TouchControls'
 
 const KEY_CODES = { E: 'KeyE', R: 'KeyR' }
@@ -64,6 +66,7 @@ export default function Hud() {
       </div>
 
       <div className="hud__top-right">
+        {HALLOWEEN && <PumpkinPill />}
         <AchievementsPill onClick={() => setPanel(panel === 'achievements' ? null : 'achievements')} />
         <SoundPill />
         <button className="hud__pill" onClick={() => setPanel(panel === 'settings' ? null : 'settings')} aria-label="Ajustes">
@@ -134,6 +137,25 @@ function SoundPill() {
   return (
     <button className="hud__pill" onClick={toggleMute} aria-label={muted ? 'Activar sonido' : 'Silenciar'} title="Sonido (M)">
       {muted ? <IconMuted /> : <IconSound />}
+    </button>
+  )
+}
+
+// Contador de la caza de calabazas (solo en Halloween)
+function PumpkinPill() {
+  const found = useGame((s) => s.pumpkins.length)
+  const done = found >= PUMPKIN_TOTAL
+  return (
+    <button
+      className={`hud__pill ${done ? 'hud__pill--gold' : ''}`}
+      aria-label={`Calabazas encontradas: ${found} de ${PUMPKIN_TOTAL}`}
+      onClick={() =>
+        useGame
+          .getState()
+          .showToast(done ? '¡Las tienes todas! 🎃' : 'Caza de calabazas 🎃', done ? 'Eres un auténtico cazador' : 'Busca las calabazas moradas que flotan escondidas por el mapa')
+      }
+    >
+      🎃 <span className="hud__pill-num">{found}/{PUMPKIN_TOTAL}</span>
     </button>
   )
 }

@@ -6,6 +6,7 @@ import { useGame } from '../state/store'
 import { theme } from '../theme'
 import { Board, Label } from './common'
 import { CAMPFIRE, LANE, PITCH_CX, PLAZA, mulberry32 } from './layout'
+import PumpkinHunt from './PumpkinHunt'
 
 // ---------- Ubicaciones ----------
 export const GRAVEYARD = [-20, -7]
@@ -72,6 +73,7 @@ export default function Halloween() {
       <Bats center={[PITCH_CX, -52]} count={high ? 8 : 4} radius={[5, 9]} height={[6, 9]} seed={7} />
       <Bats center={GRAVEYARD} count={high ? 6 : 3} radius={[2, 4]} height={[3.5, 5]} seed={11} />
       <PlazaLights />
+      <PumpkinHunt />
       <WelcomeBoard />
       {high && (
         <>

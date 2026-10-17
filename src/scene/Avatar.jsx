@@ -145,8 +145,8 @@ export default function Avatar({ limbs }) {
       </group>
       {inRoom && (
         <Billboard position-y={2.2}>
-          <Label fontSize={0.1} color={theme.pending} letterSpacing={0.08}>
-            AVATAR PROVISIONAL
+          <Label fontSize={0.13} color={theme.text} letterSpacing={0.12} outlineWidth={0.008} outlineColor={theme.accent}>
+            JORGE
           </Label>
         </Billboard>
       )}

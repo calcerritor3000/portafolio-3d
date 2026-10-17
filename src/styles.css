@@ -474,3 +474,5 @@ kbd {
 @media (max-height: 500px) {
   .loader { place-items: start center; overflow-y: auto; }
 }
+
+.hud__pill--gold { border-color: rgba(252, 211, 77, 0.6); box-shadow: 0 0 16px rgba(252, 211, 77, 0.35); }

@@ -1,5 +1,7 @@
 # Portafolio 3D · Jorge Calcerrada
 
+[![CI](https://github.com/calcerritor3000/portafolio-3d/actions/workflows/ci.yml/badge.svg)](https://github.com/calcerritor3000/portafolio-3d/actions/workflows/ci.yml)
+
 Habitación de desarrollador → mundo abierto explorable con proyectos, enlaces y zonas de minijuegos.
 React + React Three Fiber + drei + Rapier, empaquetado con Vite.
 

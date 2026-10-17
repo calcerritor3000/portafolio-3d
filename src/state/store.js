@@ -1,3 +1,4 @@
+import { HALLOWEEN } from '../season'
 import { create } from 'zustand'
 import { isMuted, setMuted } from '../audio/sfx'
 
@@ -115,6 +116,15 @@ export const useGame = create((set, get) => ({
     const a = ACHIEVEMENTS.find((x) => x.id === id)
     if (a) get().showToast('Logro desbloqueado', a.title, 'gold')
   },
+  // Caza de calabazas (Halloween): ids encontrados, guardados en el navegador
+  pumpkins: readJson('pf3d-pumpkins', []),
+  findPumpkin: (id) => {
+    if (get().pumpkins.includes(id)) return get().pumpkins.length
+    const pumpkins = [...get().pumpkins, id]
+    savePref('pf3d-pumpkins', JSON.stringify(pumpkins))
+    set({ pumpkins })
+    return pumpkins.length
+  },
   visited: {},
   visit: (id) => {
     if (get().visited[id]) return
@@ -126,6 +136,7 @@ export const useGame = create((set, get) => ({
 }))
 
 export const ACHIEVEMENTS = [
+  ...(HALLOWEEN ? [{ id: 'pumpkins', title: 'Cazador de calabazas', hint: 'Encuentra las 10 calabazas escondidas por el mapa' }] : []),
   { id: 'goal', title: 'Primer gol', hint: 'Marca un gol al portero' },
   { id: 'hattrick', title: 'Hat-trick', hint: 'Marca 3 goles en un mismo reto' },
   { id: 'strike', title: '¡Strike!', hint: 'Tira los 10 bolos de una vez' },
